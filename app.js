@@ -1,23 +1,24 @@
 const express = require('express');
+const mongoose = require('mongoose');
+const pageRoute = require('./routes/pageRoute');
+const courseRoute = require('./routes/courseRoute');
+const bodyParser = require('body-parser');
 const app = express();
 const PORT = 7000;
-
+//connect db
+mongoose
+  .connect('mongodb://127.0.0.1:27017/smartedu-db')
+  .then(() => console.log('Connected!'));
 //template negine
 app.set('view engine', 'ejs');
 //middlewares
 app.use(express.static('public'));
+app.use(bodyParser.json()) // for parsing application/json
+app.use(bodyParser.urlencoded({ extended: true })) // for parsing application/x-www-form-urlencoded
+//Routes
+app.use('/', pageRoute);
+app.use('/courses', courseRoute);
 
-app.get('/', (req, res) => {
-  res.status(200).render('index', {
-    page_name: 'index',
-  });
-});
-
-app.get('/about', (req, res) => {
-  res.status(200).render('about', {
-    page_name: 'about',
-  });
-});
 app.get('/contact', (req, res) => {
   res.status(200).render('contact', {
     page_name: 'contact',
