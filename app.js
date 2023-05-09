@@ -56,11 +56,7 @@ app.get('/courses', (req, res) => {
     page_name: 'courses',
   });
 });
-app.get('/dashboard', (req, res) => {
-  res.status(200).render('dashboard', {
-    page_name: 'dashboard',
-  });
-});
+
 app.get('/login', (req, res) => {
   res.status(200).render('login', {
     page_name: 'login',
