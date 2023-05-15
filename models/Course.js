@@ -17,25 +17,27 @@ const CourseSchema = new Schema({
     type: Date,
     default: Date.now,
   },
-  slug:{
-    type:String,
-    unique:true
+  slug: {
+    type: String,
+    unique: true,
   },
   category: {
-    type:mongoose.Schema.Types.ObjectId,
-    ref:'Category'
-}
-
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Category',
+  },
+  user: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User',
+  },
 });
 
-CourseSchema.pre('validate',function(next){
-  this.slug=slugify(this.name,{
-    lowe:true,
-    strict:true
-  })
+CourseSchema.pre('validate', function (next) {
+  this.slug = slugify(this.name, {
+    lowe: true,
+    strict: true,
+  });
   next();
-})
+});
 
-
-const Course = mongoose.model('Course',CourseSchema);
-module.exports=Course
+const Course = mongoose.model('Course', CourseSchema);
+module.exports = Course;
