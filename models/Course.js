@@ -29,6 +29,7 @@ const CourseSchema = new Schema({
     type: mongoose.Schema.Types.ObjectId,
     ref: 'User',
   },
+  
 });
 
 CourseSchema.pre('validate', function (next) {
