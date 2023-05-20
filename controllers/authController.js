@@ -34,7 +34,7 @@ exports.loginUser = async (req, res) => {
 
         }else{
           req.flash('error', "Your password is not correct!");
-          res.status(400).redirect('login');
+          res.status(400).redirect('/login');
         }
         
       });
